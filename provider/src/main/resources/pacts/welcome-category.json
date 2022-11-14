@@ -1,0 +1,117 @@
+{
+  "consumer": {
+    "name": "welcome"
+  },
+  "interactions": [
+    {
+      "comments": {
+        "text": [
+
+        ]
+      },
+      "description": "a request to GET all categories",
+      "key": "b6e20607",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "provider returns all categories"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/category"
+      },
+      "response": {
+        "body": {
+          "content": [
+            {
+              "id": 100,
+              "name": "string"
+            },
+            {
+              "id": 100,
+              "name": "string"
+            },
+            {
+              "id": 100,
+              "name": "string"
+            }
+          ],
+          "contentType": "application/json; charset=UTF-8",
+          "encoded": false
+        },
+        "generators": {
+          "body": {
+            "$[*].id": {
+              "max": 2147483647,
+              "min": 0,
+              "type": "RandomInt"
+            },
+            "$[*].name": {
+              "size": 20,
+              "type": "RandomString"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 3
+                }
+              ]
+            },
+            "$[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$[*].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.3.16"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "category"
+  }
+}

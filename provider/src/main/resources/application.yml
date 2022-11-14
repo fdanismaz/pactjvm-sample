@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: provider
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+server:
+  port: 9091
+
+#eureka:
+#  server:
+#    host: localhost:8761
+#    contextPath: registry
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_URI:http://${eureka.server.host}/${eureka.server.contextPath}/eureka}
+#  instance:
+#    preferIpAddress: true
